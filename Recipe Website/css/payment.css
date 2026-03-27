@@ -1,0 +1,33 @@
+/* Payment page styles (extends shared.css) */
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;animation:fadeInUp .6s ease-out .2s both;}
+.pay-items{display:flex;flex-direction:column;gap:10px;max-height:250px;overflow-y:auto;padding-right:6px;}
+.pay-items::-webkit-scrollbar{width:5px;}
+.pay-items::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:4px;}
+.pay-item{display:flex;align-items:center;gap:12px;padding:10px;background:rgba(245,199,120,.06);border-radius:10px;border-left:3px solid var(--gold2);}
+.pay-item img{width:45px;height:45px;border-radius:8px;object-fit:cover;}
+.pay-item-info{flex:1;}
+.pay-item-info h4{font-size:.9rem;color:var(--brown);}
+.pay-item-info span{font-size:.78rem;color:var(--brown4);}
+.pay-item-price{font-weight:700;color:var(--brown3);font-size:.9rem;white-space:nowrap;}
+.price-summary{margin-top:15px;display:flex;flex-direction:column;gap:6px;}
+.price-summary .row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--brown2);}
+.price-summary .row.total{font-weight:800;font-size:1.15rem;color:var(--brown);border-top:2px solid var(--gold2);padding-top:10px;margin-top:6px;}
+.price-summary .row.total span:last-child{font-family:'Playfair Display',serif;font-size:1.3rem;}
+
+/* UPI section */
+.upi-section{text-align:center;}
+.upi-section h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--brown);margin-bottom:12px;}
+.qr-box{background:#fff;padding:18px;border-radius:16px;display:inline-block;box-shadow:0 4px 15px rgba(58,31,20,.1);margin-bottom:12px;border:2px solid var(--card-border);}
+.qr-box img{width:170px;height:170px;display:block;border-radius:8px;}
+.qr-label{margin-top:8px;font-size:.78rem;color:var(--brown4);font-style:italic;}
+.upi-id-box{margin:12px 0;}
+.upi-id-box .label{font-size:.78rem;font-weight:600;color:var(--brown4);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:5px;}
+.upi-copy-row{display:flex;align-items:center;justify-content:center;gap:8px;}
+.upi-copy-row code{background:linear-gradient(135deg,#3d1f14,#5a2d1a);color:var(--gold);padding:10px 18px;border-radius:10px;font-size:1rem;font-weight:600;}
+.copy-btn{padding:10px 16px;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s ease;background:linear-gradient(135deg,var(--gold),#e0a94e);color:#2c1810;}
+.copy-btn:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(212,167,106,.4);}
+.copy-btn.copied{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;}
+.app-badges{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px;}
+.app-badges span{padding:4px 12px;background:rgba(212,167,106,.12);border:1px solid rgba(212,167,106,.25);border-radius:20px;font-size:.75rem;font-weight:500;color:var(--brown2);}
+.secure-note{text-align:center;font-size:.78rem;color:var(--brown4);margin-top:10px;}
+@media(max-width:768px){.payment-grid{grid-template-columns:1fr;}}

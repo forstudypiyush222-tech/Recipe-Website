@@ -1,0 +1,18 @@
+/* Checkout page styles */
+.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;animation:fadeInUp .6s ease-out .2s both;}
+.order-list{display:flex;flex-direction:column;gap:12px;max-height:400px;overflow-y:auto;padding-right:8px;}
+.order-list::-webkit-scrollbar{width:6px;}
+.order-list::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:4px;}
+.order-item{display:flex;align-items:center;gap:14px;padding:12px;background:rgba(245,199,120,.06);border-radius:12px;border-left:3px solid var(--gold2);}
+.order-item img{width:55px;height:55px;border-radius:10px;object-fit:cover;}
+.order-item-info{flex:1;}
+.order-item-info h4{font-size:.95rem;color:var(--brown);}
+.order-item-info span{font-size:.8rem;color:var(--brown4);}
+.order-item-price{font-weight:700;color:var(--brown3);font-size:.95rem;white-space:nowrap;}
+.price-summary{margin-top:20px;display:flex;flex-direction:column;gap:8px;}
+.price-summary .row{display:flex;justify-content:space-between;font-size:.95rem;color:var(--brown2);}
+.price-summary .row.total{font-weight:800;font-size:1.2rem;color:var(--brown);border-top:2px solid var(--gold2);padding-top:12px;margin-top:6px;}
+.price-summary .row.total span:last-child{font-family:'Playfair Display',serif;font-size:1.4rem;}
+.form-group{margin-bottom:16px;}
+.checkout-note{font-size:.82rem;color:var(--brown4);margin-top:15px;text-align:center;}
+@media(max-width:768px){.checkout-grid{grid-template-columns:1fr;}}
