@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Piyush Da Dhaba 🔐</title>
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:35px;animation:fadeInUp .5s ease-out;}
+        .stat-card{background:var(--card-bg);border-radius:16px;padding:25px;text-align:center;border:1px solid var(--card-border);box-shadow:0 4px 18px rgba(58,31,20,.08);transition:transform .3s ease;}
+        .stat-card:hover{transform:translateY(-3px);}
+        .stat-icon{font-size:2.2rem;margin-bottom:8px;display:block;}
+        .stat-value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--brown);}
+        .stat-label{font-size:.82rem;color:var(--brown4);margin-top:2px;}
+        .admin-table-wrap{overflow-x:auto;animation:fadeInUp .6s ease-out .2s both;}
+        .admin-table{width:100%;border-collapse:collapse;background:var(--card-bg);border-radius:16px;overflow:hidden;box-shadow:0 6px 25px rgba(58,31,20,.08);}
+        .admin-table th{background:linear-gradient(135deg,#3d1f14,#5a2d1a);color:var(--gold);padding:14px 18px;text-align:left;font-size:.88rem;font-weight:600;letter-spacing:.5px;}
+        .admin-table td{padding:14px 18px;border-bottom:1px solid rgba(212,167,106,.12);font-size:.9rem;color:var(--brown);}
+        .admin-table tr:last-child td{border-bottom:none;}
+        .admin-table tr:hover td{background:rgba(245,199,120,.04);}
+        .admin-table .items-col{max-width:250px;}
+        .admin-table .items-col span{display:inline-block;padding:2px 10px;background:rgba(245,199,120,.1);border-radius:12px;font-size:.75rem;color:var(--brown2);margin:2px;border:1px solid rgba(212,167,106,.15);}
+        @media(max-width:700px){.admin-table th,.admin-table td{padding:10px 12px;font-size:.82rem;}}
+    </style>
+</head>
+<body>
+<div class="container">
+    <header><div class="navcontainer"><nav><ul id="navlist">
+        <li><a href="index.html" id="logo">🍽️ Piyush Da Dhaba</a></li>
+        <li><div id="navlinks">
+            <a href="index.html">Home</a>
+            <a href="orders.html">Orders</a>
+            <a href="admin.html" style="color:var(--gold)!important;">🔐 Admin</a>
+        </div></li>
+    </ul></nav></div></header>
+
+    <main class="page-main">
+        <h1 class="page-title">🔐 Admin Dashboard</h1>
+        <div id="admin-stats"></div>
+        <div id="admin-table"></div>
+    </main>
+
+    <footer><div class="footerbox">
+        <p>🍽️ Copyright &copy; 2024–2026 Piyush Da Dhaba Pvt Ltd. All Rights Reserved. 🍽️</p>
+        <p class="footer-tagline">Made with ❤️ and lots of Ghee by Piyush</p>
+    </div></footer>
+</div>
+<script src="shared.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const orders = getOrders();
+
+    // Stats
+    const totalOrders = orders.length;
+    const totalRevenue = orders.reduce((s,o) => s + (o.total || 0), 0);
+    const totalItems = orders.reduce((s,o) => s + o.items.reduce((ss,i) => ss + i.quantity, 0), 0);
+    const uniqueCustomers = new Set(orders.map(o => (o.customer && o.customer.email) || 'guest')).size;
+
+    document.getElementById('admin-stats').innerHTML = `<div class="stats-grid">
+        <div class="stat-card"><span class="stat-icon">📦</span><div class="stat-value">${totalOrders}</div><div class="stat-label">Total Orders</div></div>
+        <div class="stat-card"><span class="stat-icon">💰</span><div class="stat-value">${formatCurrency(totalRevenue)}</div><div class="stat-label">Total Revenue</div></div>
+        <div class="stat-card"><span class="stat-icon">🍽️</span><div class="stat-value">${totalItems}</div><div class="stat-label">Items Sold</div></div>
+        <div class="stat-card"><span class="stat-icon">👥</span><div class="stat-value">${uniqueCustomers}</div><div class="stat-label">Customers</div></div>
+    </div>`;
+
+    // Table
+    if (orders.length === 0) {
+        document.getElementById('admin-table').innerHTML = '<div class="empty-state"><span class="empty-icon">📊</span><h3>No orders yet</h3><p>Orders will appear here once customers place them.</p></div>';
+        return;
+    }
+
+    let rows = '';
+    orders.forEach(o => {
+        const items = o.items.map(i => `<span>${i.name} ×${i.quantity}</span>`).join('');
+        const email = (o.customer && o.customer.email) || '—';
+        rows += `<tr>
+            <td><strong>${o.orderId}</strong></td>
+            <td>${email}</td>
+            <td class="items-col">${items}</td>
+            <td><strong>${formatCurrency(o.total)}</strong></td>
+            <td>${formatDate(o.date)}</td>
+            <td><a href="receipt.html?id=${o.orderId}" class="btn-gold" style="padding:5px 12px;font-size:.75rem;">🧾</a></td>
+        </tr>`;
+    });
+
+    document.getElementById('admin-table').innerHTML = `<div class="admin-table-wrap"><table class="admin-table">
+        <thead><tr><th>Order ID</th><th>Email</th><th>Items</th><th>Total</th><th>Date</th><th></th></tr></thead>
+        <tbody>${rows}</tbody>
+    </table></div>`;
+});
+</script>
+</body>
+</html>
