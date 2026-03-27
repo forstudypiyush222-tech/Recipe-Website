@@ -86,7 +86,7 @@ Recipe Website/
 ## 🚀 How to Run Locally
 
 ```bash
-git clone https://github.com/your-username/Recipe-Website.git
+git clone https://github.com/forstudypiyush222-tech/Recipe-Website.git
 cd Recipe-Website
 ```
 
