@@ -29,26 +29,26 @@ const PRICES = {
 
 // ===== ITEM IMAGES =====
 const IMAGES = {
-    'Gulab Jamun': 'gulab jamun.jpg',
-    'Vampire Blood Drink': 'blood drink.png',
-    'Classic Barfi': 'barfi.jpg',
-    'Butter Chicken': 'butter_chicken.png',
-    'Hyderabadi Biryani': 'biryani.png',
-    'Pani Puri (Golgappa)': 'pani_puri.png',
-    'Chole Bhature': 'chole_bhature.png',
-    'Crispy Jalebi': 'jalebi.png',
-    'Rasmalai': 'rasmalai.png',
-    'Monster Green Pasta': 'Monster green pasta.png',
-    'Zombie Burger': 'Zombie Burger.png',
-    'Zombie Brain Jelly': 'Zombie Brain Jelly.png',
-    'Poison Apple Drink': 'Poison Apple Drink.png',
-    'Ghost Marshmallow Dessert': 'Ghost Marshmallow Dessert.png',
-    'Coffin Sandwich': 'Coffin Sandwich.png',
-    'Toxic Slime Drink': 'Toxic Slime Drink.png',
-    'Skull Chocolate Cake': 'Skull Chocolate Cake.png',
-    'Spider Web Pizza': 'Spider Web Pizza.png',
-    'Bloody Pancakes': 'Bloody Pancakes.png',
-    'Graveyard Dessert Cup': 'Graveyard Dessert Cup.png'
+    'Gulab Jamun': 'FRONTEND/assets/gulab jamun.jpg',
+    'Vampire Blood Drink': 'FRONTEND/assets/blood drink.png',
+    'Classic Barfi': 'FRONTEND/assets/barfi.jpg',
+    'Butter Chicken': 'FRONTEND/assets/butter_chicken.png',
+    'Hyderabadi Biryani': 'FRONTEND/assets/biryani.png',
+    'Pani Puri (Golgappa)': 'FRONTEND/assets/pani_puri.png',
+    'Chole Bhature': 'FRONTEND/assets/chole_bhature.png',
+    'Crispy Jalebi': 'FRONTEND/assets/jalebi.png',
+    'Rasmalai': 'FRONTEND/assets/rasmalai.png',
+    'Monster Green Pasta': 'FRONTEND/assets/Monster green pasta.png',
+    'Zombie Burger': 'FRONTEND/assets/Zombie Burger.png',
+    'Zombie Brain Jelly': 'FRONTEND/assets/Zombie Brain Jelly.png',
+    'Poison Apple Drink': 'FRONTEND/assets/Poison Apple Drink.png',
+    'Ghost Marshmallow Dessert': 'FRONTEND/assets/Ghost Marshmallow Dessert.png',
+    'Coffin Sandwich': 'FRONTEND/assets/Coffin Sandwich.png',
+    'Toxic Slime Drink': 'FRONTEND/assets/Toxic Slime Drink.png',
+    'Skull Chocolate Cake': 'FRONTEND/assets/Skull Chocolate Cake.png',
+    'Spider Web Pizza': 'FRONTEND/assets/Spider Web Pizza.png',
+    'Bloody Pancakes': 'FRONTEND/assets/Bloody Pancakes.png',
+    'Graveyard Dessert Cup': 'FRONTEND/assets/Graveyard Dessert Cup.png'
 };
 
 // ===== ITEM CATEGORIES =====
