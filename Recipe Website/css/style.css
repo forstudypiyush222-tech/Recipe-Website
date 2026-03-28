@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* ===== DESIGN TOKENS ===== */
+:root {
+    --card-padding: 30px;
+    --card-gap: 25px;
+    --card-radius: 24px;
+    --img-height: 300px;
+    --btn-min-h: 48px;
+    --btn-radius: 12px;
+    --gold: #f5c778;
+    --gold2: #d4a76a;
+    --brown: #3a1f14;
+    --brown2: #5a3825;
+    --brown3: #5a2d1a;
+    --cream: #fdf8f0;
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(212, 167, 106, 0.2);
+    --transition: 0.3s ease;
+}
+
 /* ===== RESET & BASE ===== */
 * {
     margin: 0;
@@ -15,6 +34,7 @@ body {
     font-family: 'Poppins', sans-serif;
     color: #3a1f14;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* ===== CONTAINER ===== */
@@ -108,6 +128,166 @@ a:hover::after {
     flex-shrink: 0;
 }
 
+/* ===== HAMBURGER BUTTON (hidden on desktop) ===== */
+.hamburger-li {
+    display: none;
+}
+
+.hamburger-btn {
+    background: none;
+    border: 2px solid rgba(245, 199, 120, 0.3);
+    border-radius: 12px;
+    color: #f5c778;
+    font-size: 1.6rem;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.hamburger-btn:hover {
+    background: rgba(245, 199, 120, 0.12);
+    border-color: #f5c778;
+}
+
+.hamburger-btn.active {
+    background: rgba(245, 199, 120, 0.15);
+    border-color: #f5c778;
+}
+
+.hamburger-icon {
+    line-height: 1;
+}
+
+/* ===== MOBILE NAV OVERLAY ===== */
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10, 5, 3, 0.7);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.mobile-nav-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== MOBILE NAV PANEL ===== */
+.mobile-nav-panel {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #1a0f0a 0%, #2c1810 30%, #3d1f14 100%);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow-y: auto;
+}
+
+.mobile-nav-overlay.open .mobile-nav-panel {
+    right: 0;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 22px;
+    border-bottom: 1px solid rgba(245, 199, 120, 0.12);
+}
+
+.mobile-nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #f5c778;
+    white-space: nowrap;
+}
+
+.mobile-nav-close {
+    background: rgba(245, 199, 120, 0.1);
+    border: 1px solid rgba(245, 199, 120, 0.2);
+    color: #f5c778;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-nav-close:hover {
+    background: rgba(245, 199, 120, 0.2);
+    transform: rotate(90deg);
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 12px;
+    gap: 4px;
+}
+
+.mobile-nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 18px;
+    color: #e8d5c0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 14px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    border-left: 3px solid transparent;
+}
+
+.mobile-nav-links a:hover {
+    background: rgba(245, 199, 120, 0.1);
+    color: #f5c778;
+    border-left-color: #f5c778;
+    transform: translateX(4px);
+}
+
+.mobile-nav-links a::after {
+    display: none;
+}
+
+.mobile-cart-link {
+    position: relative;
+}
+
+.mobile-cart-badge {
+    position: static !important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: #c62828;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin-left: 6px;
+    line-height: 1;
+}
+
 /* ===== HERO SECTION ===== */
 .hero-section {
     background: linear-gradient(135deg, #2c1810 0%, #5a2d1a 40%, #8b4513 70%, #d4a76a 100%);
@@ -146,13 +326,14 @@ a:hover::after {
 
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3.2rem;
+    font-size: clamp(1.6rem, 5vw, 3.2rem);
     font-weight: 900;
     color: #f5c778;
     text-shadow: 0 4px 20px rgba(245, 199, 120, 0.3);
     margin-bottom: 10px;
     animation: slideDown 0.8s ease-out;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: center;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -265,23 +446,27 @@ a:hover::after {
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+.recipe-section.hidden-by-filter {
+    display: none !important;
+}
+
 .recipe-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
-    padding: 35px;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.88);
+    gap: var(--card-gap);
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 167, 106, 0.2);
+    border: 1px solid var(--card-border);
     box-shadow: 0 6px 30px rgba(58, 31, 20, 0.08);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .recipe-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(58, 31, 20, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 50px rgba(58, 31, 20, 0.18);
 }
 
 /* ===== LEFT BOX (Text content) ===== */
@@ -375,8 +560,7 @@ a:hover::after {
     box-shadow: 0 8px 30px rgba(26, 15, 10, 0.2);
     width: 100%;
     max-width: 400px;
-    height: auto;
-    max-height: 350px;
+    height: var(--img-height);
     transition: box-shadow 0.4s ease;
     order: 1;
 }
@@ -388,7 +572,6 @@ a:hover::after {
 .image-box img {
     width: 100%;
     height: 100%;
-    max-height: 350px;
     object-fit: cover;
     border-radius: 20px;
     display: block;
@@ -610,6 +793,21 @@ a:hover::after {
     }
 }
 
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes starGlow {
+    0%, 100% { text-shadow: 0 0 4px rgba(245, 199, 120, 0.3); }
+    50% { text-shadow: 0 0 16px rgba(245, 199, 120, 0.8); }
+}
+
+@keyframes reviewSlideIn {
+    from { opacity: 0; transform: translateX(-15px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
 /* ===== SECTION DIVIDERS ===== */
 .recipe-section + .recipe-section::before {
     content: '✦  ✦  ✦';
@@ -632,16 +830,12 @@ a:hover::after {
     .image-box {
         width: 100%;
         max-width: 400px;
-        height: 350px;
+        height: 300px;
     }
 
     .contentbox {
         width: 95%;
         padding: 0 10px;
-    }
-
-    .hero-title {
-        font-size: 2.2rem;
     }
 
     .hero-subtitle {
@@ -659,37 +853,125 @@ a:hover::after {
     }
 }
 
-@media (max-width: 600px) {
-    #logo {
-        font-size: 1.4rem;
+@media (max-width: 768px) {
+    :root {
+        --card-padding: 22px;
+        --img-height: 260px;
+    }
+
+    /* ---- Show hamburger, hide desktop nav links ---- */
+    #navlinks {
+        display: none !important;
+    }
+
+    .hamburger-li {
+        display: block;
     }
 
     #navlist {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-        padding: 10px;
+        padding: 10px 16px;
     }
 
-    a {
-        font-size: 0.9rem;
-        padding: 6px 14px;
+    #logo {
+        font-size: 1.5rem;
     }
 
     .hero-section {
         padding: 50px 20px;
     }
 
-    .hero-title {
-        font-size: 1.8rem;
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-taglines p {
+        font-size: 0.95rem;
     }
 
     .hero-intro {
         padding: 20px;
     }
 
+    .hero-intro p {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        padding: 35px 15px 10px;
+    }
+
+    .contentbox {
+        width: 96%;
+        gap: 35px;
+    }
+
     .recipe-card {
-        padding: 20px;
+        gap: 20px;
+    }
+
+    .leftbox h2 {
+        font-size: 1.6rem;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .card-btn {
+        width: 100%;
+    }
+
+    .image-box {
+        max-width: 100%;
+    }
+
+    .contact-section {
+        padding: 20px 15px 40px;
+    }
+
+    .contact-container {
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .about-section {
+        padding: 20px 15px 40px;
+    }
+
+    .about-content {
+        padding: 25px;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+
+    .category-bar {
+        padding: 0 10px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    #logo {
+        font-size: 1.3rem;
+    }
+
+    .hero-section {
+        padding: 40px 15px;
+    }
+
+    .hero-intro {
+        padding: 18px;
+    }
+
+    .recipe-card {
+        padding: 18px;
     }
 
     .section-title {
@@ -697,15 +979,70 @@ a:hover::after {
     }
 
     .image-box {
-        height: 280px;
+        height: 240px;
     }
 
     .contact-container {
-        padding: 25px;
+        padding: 20px;
     }
 
     .about-content {
-        padding: 25px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --card-padding: 16px;
+        --img-height: 220px;
+    }
+
+    #logo {
+        font-size: 1.2rem;
+    }
+
+    .hero-section {
+        padding: 30px 12px;
+    }
+
+    .hero-btn {
+        padding: 12px 28px !important;
+        font-size: 1rem !important;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .leftbox h2 {
+        font-size: 1.35rem;
+    }
+
+    .leftbox h3 {
+        font-size: 1.1rem;
+    }
+
+    .leftbox li {
+        font-size: 0.85rem;
+    }
+
+    .card-btn {
+        font-size: 0.88rem;
+        padding: 10px;
+    }
+
+    .contact-item {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .contact-emoji {
+        font-size: 1.5rem;
+    }
+
+    .cat-btn {
+        font-size: 0.8rem;
+        padding: 8px 14px;
     }
 }
 
@@ -726,14 +1063,23 @@ a:hover::after {
 .card-btn {
     flex: 1;
     padding: 12px 10px;
+    min-height: var(--btn-min-h);
     border: none;
-    border-radius: 12px;
+    border-radius: var(--btn-radius);
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition);
     text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
 }
 
 .cart-add-btn {
@@ -836,13 +1182,14 @@ a:hover::after {
     font-size: 2rem;
     cursor: pointer;
     color: #d4a76a;
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.3s ease;
 }
 
 .fb-star:hover,
 .fb-star.active {
     color: #f5c778;
     transform: scale(1.25);
+    animation: starGlow 1.2s ease-in-out infinite;
 }
 
 .fb-submit {
@@ -874,6 +1221,7 @@ a:hover::after {
     margin-bottom: 12px;
     border-left: 3px solid #d4a76a;
     transition: transform 0.2s ease;
+    animation: reviewSlideIn 0.4s ease-out both;
 }
 
 .fb-review-card:hover {
@@ -957,16 +1305,118 @@ a:hover::after {
     }
 }
 
-@media (max-width: 600px) {
-    .card-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
+/* ===== SEARCH BAR ===== */
+.search-bar {
+    max-width: 550px;
+    margin: 0 auto 20px;
+    padding: 0 20px;
+}
 
-    .card-btn {
-        font-size: 0.88rem;
-        padding: 10px;
-    }
+.search-bar input {
+    width: 100%;
+    padding: 14px 22px;
+    border: 2px solid rgba(212, 167, 106, 0.3);
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #3a1f14;
+    background: #fdf8f0;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input:focus {
+    border-color: #d4a76a;
+    box-shadow: 0 0 0 4px rgba(212, 167, 106, 0.15), 0 4px 20px rgba(212, 167, 106, 0.1);
+}
+
+.search-bar input::placeholder {
+    color: #b8a090;
+}
+
+/* ===== CATEGORY BAR ===== */
+.category-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 20px 25px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cat-btn {
+    padding: 10px 20px;
+    border: 2px solid rgba(212, 167, 106, 0.3);
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.7);
+    color: #5a3825;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.cat-btn:hover {
+    background: rgba(245, 199, 120, 0.15);
+    border-color: #d4a76a;
+    color: #3a1f14;
+    transform: translateY(-2px);
+}
+
+.cat-btn.active {
+    background: linear-gradient(135deg, #d4a76a, #f5c778);
+    color: #2c1810;
+    border-color: #f5c778;
+    box-shadow: 0 4px 15px rgba(212, 167, 106, 0.35);
+    transform: translateY(-2px);
+}
+
+.cat-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== NO RESULTS ===== */
+#no-results {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+#no-results.show {
+    display: block;
+}
+
+#no-results .no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+#no-results h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #3a1f14;
+    margin-bottom: 8px;
+}
+
+#no-results p {
+    color: #8b5e3c;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+/* ===== SECTION TITLE SHIMMER ===== */
+.section-title {
+    background: linear-gradient(90deg, #3a1f14 0%, #3a1f14 40%, #d4a76a 50%, #3a1f14 60%, #3a1f14 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
 }
 
 /* ===== FLOATING MENU BUTTON ===== */

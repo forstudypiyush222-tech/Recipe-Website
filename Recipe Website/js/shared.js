@@ -139,11 +139,18 @@ function getCartTotal() {
 
 function updateCartBadge() {
     const badge = document.getElementById('cart-badge');
-    if (!badge) return;
     const cart = getCart();
     const count = cart.reduce((s, i) => s + i.quantity, 0);
-    badge.textContent = count;
-    badge.style.display = count > 0 ? 'flex' : 'none';
+    if (badge) {
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+    // Also sync mobile nav cart badge
+    const mobileBadge = document.getElementById('cart-badge-mobile');
+    if (mobileBadge) {
+        mobileBadge.textContent = count;
+        mobileBadge.style.display = count > 0 ? 'inline-flex' : 'none';
+    }
 }
 
 // ==================== ORDERS ====================

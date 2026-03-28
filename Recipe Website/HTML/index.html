@@ -24,6 +24,7 @@
                             <div id="navlinks">
                                 <a href="#hero">Home</a>
                                 <a href="#menu">📖 Explore</a>
+                                <a href="#feedback">Feedback</a>
                                 <a href="#contact">Contact</a>
                                 <a href="#about">About</a>
                                 <a href="orders.html">Orders</a>
@@ -31,10 +32,34 @@
                                         id="cart-badge">0</span></a>
                             </div>
                         </li>
+                        <li class="hamburger-li">
+                            <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" onclick="toggleMobileNav()">
+                                <span class="hamburger-icon">☰</span>
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </header>
+
+        <!-- ===== MOBILE NAV OVERLAY ===== -->
+        <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileNavOutside(event)">
+            <div class="mobile-nav-panel" id="mobile-nav-panel">
+                <div class="mobile-nav-header">
+                    <p class="mobile-nav-logo">🍽️ Piyush Da Dhaba</p>
+                    <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+                </div>
+                <div class="mobile-nav-links">
+                    <a href="#hero" onclick="closeMobileNav()">🏠 Home</a>
+                    <a href="#menu" onclick="closeMobileNav()">📖 Explore</a>
+                    <a href="#feedback" onclick="closeMobileNav()">⭐ Feedback</a>
+                    <a href="#contact" onclick="closeMobileNav()">📞 Contact</a>
+                    <a href="#about" onclick="closeMobileNav()">✨ About</a>
+                    <a href="orders.html" onclick="closeMobileNav()">📦 Orders</a>
+                    <a href="cart.html" class="mobile-cart-link" onclick="closeMobileNav()">🛒 Cart <span class="cart-badge mobile-cart-badge" id="cart-badge-mobile">0</span></a>
+                </div>
+            </div>
+        </div>
 
         <!-- ===== HERO / INTRO SECTION ===== -->
         <section id="hero" class="hero-section">
@@ -63,10 +88,32 @@
         <!-- ===== MAIN MENU ===== -->
         <main id="menu">
             <h2 class="section-title">🍳 Our Famous Dishes 🍳</h2>
+
+            <!-- Search Bar -->
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-input" placeholder="🔍 Search recipes..." autocomplete="off">
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="category-bar" id="category-bar">
+                <button class="cat-btn active" data-cat="all" onclick="filterByCategory('all', this)">🍽️ All</button>
+                <button class="cat-btn" data-cat="drinks" onclick="filterByCategory('drinks', this)">🍹 Drinks</button>
+                <button class="cat-btn" data-cat="desserts" onclick="filterByCategory('desserts', this)">🍰 Desserts</button>
+                <button class="cat-btn" data-cat="meals" onclick="filterByCategory('meals', this)">🍽️ Meals</button>
+                <button class="cat-btn" data-cat="haunted" onclick="filterByCategory('haunted', this)">👻 Haunted Specials</button>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results">
+                <span class="no-results-icon">🔍</span>
+                <h3>No items found</h3>
+                <p>Try searching with a different keyword or explore all categories.</p>
+            </div>
+
             <div class="contentbox">
 
                 <!-- ========== Item 1: Gulab Jamun ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🍩 Gulab Jamun</h2>
@@ -131,7 +178,7 @@
                 </section>
 
                 <!-- ========== Item 2: Vampire Blood Drink ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="drinks,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🧛 Vampire Blood Drink</h2>
@@ -188,7 +235,7 @@
                 </section>
 
                 <!-- ========== Item 3: Classic Barfi ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🍬 Classic Barfi</h2>
@@ -240,7 +287,7 @@
                 </section>
 
                 <!-- ========== Item 4: Butter Chicken ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🍗 Butter Chicken</h2>
@@ -304,7 +351,7 @@
                 </section>
 
                 <!-- ========== Item 5: Biryani ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🍚 Hyderabadi Biryani</h2>
@@ -365,7 +412,7 @@
                 </section>
 
                 <!-- ========== Item 6: Pani Puri ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>💥 Pani Puri (Golgappa)</h2>
@@ -427,7 +474,7 @@
                 </section>
 
                 <!-- ========== Item 7: Chole Bhature ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🔥 Chole Bhature</h2>
@@ -487,7 +534,7 @@
                 </section>
 
                 <!-- ========== Item 8: Jalebi ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🌀 Crispy Jalebi</h2>
@@ -549,7 +596,7 @@
                 </section>
 
                 <!-- ========== Item 9: Rasmalai ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🥛 Rasmalai</h2>
@@ -609,7 +656,7 @@
                 </section>
 
                 <!-- ========== Item 10: Monster Green Pasta ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🧟 Monster Green Pasta</h2>
@@ -674,7 +721,7 @@
                 </section>
 
                 <!-- ========== Item 11: Zombie Burger ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🧟‍♂️ Zombie Burger</h2>
@@ -735,7 +782,7 @@
                 </section>
 
                 <!-- ========== Item 12: Zombie Brain Jelly ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🧠 Zombie Brain Jelly</h2>
@@ -795,7 +842,7 @@
                 </section>
 
                 <!-- ========== Item 13: Poison Apple Drink ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="drinks,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🍎 Poison Apple Drink</h2>
@@ -855,7 +902,7 @@
                 </section>
 
                 <!-- ========== Item 14: Ghost Marshmallow Dessert ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>👻 Ghost Marshmallow Dessert</h2>
@@ -917,7 +964,7 @@
                 </section>
 
                 <!-- ========== Item 15: Coffin Sandwich ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>⚰️ Coffin Sandwich</h2>
@@ -975,7 +1022,7 @@
                 </section>
 
                 <!-- ========== Item 16: Toxic Slime Drink ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="drinks,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>☣️ Toxic Slime Drink</h2>
@@ -1032,7 +1079,7 @@
                 </section>
 
                 <!-- ========== Item 17: Skull Chocolate Cake ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>💀 Skull Chocolate Cake</h2>
@@ -1095,7 +1142,7 @@
                 </section>
 
                 <!-- ========== Item 18: Spider Web Pizza ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="meals,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🕷️ Spider Web Pizza</h2>
@@ -1154,7 +1201,7 @@
                 </section>
 
                 <!-- ========== Item 19: Bloody Pancakes ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🩸 Bloody Pancakes</h2>
@@ -1215,7 +1262,7 @@
                 </section>
 
                 <!-- ========== Item 20: Graveyard Dessert Cup ========== -->
-                <section class="recipe-section">
+                <section class="recipe-section" data-categories="desserts,haunted">
                     <div class="recipe-card">
                         <div class="leftbox">
                             <h2>🪦 Graveyard Dessert Cup</h2>
@@ -1464,13 +1511,21 @@
             }
             renderFeedbackReviews();
 
-            // Scroll-triggered fade-in
+            // Scroll-triggered fade-in with staggered delay
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.recipe-section, .contact-section, .about-section, .feedback-section').forEach(el => {
-                el.classList.add('fade-in'); observer.observe(el);
+            }, { threshold: 0.08 });
+            document.querySelectorAll('.recipe-section, .contact-section, .about-section, .feedback-section').forEach((el, i) => {
+                el.classList.add('fade-in');
+                el.style.transitionDelay = (i * 0.06) + 's';
+                observer.observe(el);
             });
+
+            // Search input listener
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', searchRecipes);
+            }
         });
 
         function handleAddToCart(name) {
@@ -1482,6 +1537,77 @@
         function handleBuyNow(name) {
             addToCart(name, 1);
             window.location.href = 'checkout.html';
+        }
+
+        // ===== CATEGORY FILTER LOGIC =====
+        let activeCategory = 'all';
+
+        function filterByCategory(cat, btn) {
+            activeCategory = cat;
+
+            // Clear search when filtering by category
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) searchInput.value = '';
+
+            // Update active button styling
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const sections = document.querySelectorAll('.recipe-section');
+            let visibleCount = 0;
+
+            sections.forEach(sec => {
+                if (cat === 'all') {
+                    sec.classList.remove('hidden-by-filter');
+                    visibleCount++;
+                } else {
+                    const cats = (sec.dataset.categories || '').split(',');
+                    if (cats.includes(cat)) {
+                        sec.classList.remove('hidden-by-filter');
+                        visibleCount++;
+                    } else {
+                        sec.classList.add('hidden-by-filter');
+                    }
+                }
+            });
+
+            // Show/hide no results
+            const noResults = document.getElementById('no-results');
+            if (noResults) {
+                noResults.classList.toggle('show', visibleCount === 0);
+            }
+        }
+
+        // ===== SEARCH LOGIC =====
+        function searchRecipes() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+
+            // Reset category to All when searching
+            if (query.length > 0) {
+                activeCategory = 'all';
+                document.querySelectorAll('.cat-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.cat === 'all');
+                });
+            }
+
+            const sections = document.querySelectorAll('.recipe-section');
+            let visibleCount = 0;
+
+            sections.forEach((sec, i) => {
+                const itemName = ITEM_NAMES[i] ? ITEM_NAMES[i].toLowerCase() : '';
+                if (query === '' || itemName.includes(query)) {
+                    sec.classList.remove('hidden-by-filter');
+                    visibleCount++;
+                } else {
+                    sec.classList.add('hidden-by-filter');
+                }
+            });
+
+            // Show/hide no results
+            const noResults = document.getElementById('no-results');
+            if (noResults) {
+                noResults.classList.toggle('show', visibleCount === 0);
+            }
         }
 
         // ===== FEEDBACK SECTION LOGIC =====
@@ -1630,6 +1756,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             buildMenuPopup();
             updateCartActionBar();
+            syncMobileCartBadge();
         });
 
         // Update active highlight on scroll
@@ -1637,6 +1764,44 @@
             const overlay = document.getElementById('menu-popup-overlay');
             if (overlay && overlay.classList.contains('open')) highlightActiveSection();
         });
+
+        // ===== MOBILE NAV (HAMBURGER) LOGIC =====
+        function toggleMobileNav() {
+            const overlay = document.getElementById('mobile-nav-overlay');
+            const btn = document.getElementById('hamburger-btn');
+            const isOpen = overlay.classList.contains('open');
+            if (isOpen) {
+                overlay.classList.remove('open');
+                btn.classList.remove('active');
+                document.body.style.overflow = '';
+            } else {
+                overlay.classList.add('open');
+                btn.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                syncMobileCartBadge();
+            }
+        }
+
+        function closeMobileNav() {
+            const overlay = document.getElementById('mobile-nav-overlay');
+            const btn = document.getElementById('hamburger-btn');
+            overlay.classList.remove('open');
+            btn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeMobileNavOutside(e) {
+            if (e.target === e.currentTarget) closeMobileNav();
+        }
+
+        function syncMobileCartBadge() {
+            const badge = document.getElementById('cart-badge-mobile');
+            if (!badge) return;
+            const cart = getCart();
+            const count = cart.reduce((s, i) => s + i.quantity, 0);
+            badge.textContent = count;
+            badge.style.display = count > 0 ? 'inline-flex' : 'none';
+        }
     </script>
 </body>
 
