@@ -753,6 +753,7 @@ a:hover::after {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -764,6 +765,7 @@ a:hover::after {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -771,11 +773,25 @@ a:hover::after {
 }
 
 @keyframes bounceClick {
-    0% { transform: scale(1); }
-    20% { transform: scale(0.88) rotate(-3deg); }
-    50% { transform: scale(1.12) rotate(2deg); }
-    70% { transform: scale(0.96); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(0.88) rotate(-3deg);
+    }
+
+    50% {
+        transform: scale(1.12) rotate(2deg);
+    }
+
+    70% {
+        transform: scale(0.96);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes emojiFly {
@@ -783,10 +799,12 @@ a:hover::after {
         opacity: 1;
         transform: scale(0.5) translateY(0);
     }
+
     50% {
         opacity: 1;
         transform: scale(1.2) translateY(-50px);
     }
+
     100% {
         opacity: 0;
         transform: scale(0.8) translateY(-120px) rotate(30deg);
@@ -794,22 +812,41 @@ a:hover::after {
 }
 
 @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
 }
 
 @keyframes starGlow {
-    0%, 100% { text-shadow: 0 0 4px rgba(245, 199, 120, 0.3); }
-    50% { text-shadow: 0 0 16px rgba(245, 199, 120, 0.8); }
+
+    0%,
+    100% {
+        text-shadow: 0 0 4px rgba(245, 199, 120, 0.3);
+    }
+
+    50% {
+        text-shadow: 0 0 16px rgba(245, 199, 120, 0.8);
+    }
 }
 
 @keyframes reviewSlideIn {
-    from { opacity: 0; transform: translateX(-15px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* ===== SECTION DIVIDERS ===== */
-.recipe-section + .recipe-section::before {
+.recipe-section+.recipe-section::before {
     content: '✦  ✦  ✦';
     display: block;
     text-align: center;
@@ -1047,8 +1084,30 @@ a:hover::after {
 }
 
 /* ===== CART BADGE IN NAV ===== */
-.cart-link { position: relative; display: inline-flex; align-items: center; gap: 4px; font-size: 1.2rem !important; }
-.cart-badge { position: absolute; top: -6px; right: -8px; background: #c62828; color: #fff; font-size: .7rem; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: none; justify-content: center; align-items: center; line-height: 1; }
+.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.2rem !important;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: #c62828;
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+}
 
 /* ===== CARD ACTION BUTTONS (below image) ===== */
 .card-actions {
@@ -1086,6 +1145,7 @@ a:hover::after {
     background: linear-gradient(135deg, #d4a76a, #f5c778);
     color: #2c1810;
 }
+
 .cart-add-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(212, 167, 106, 0.5);
@@ -1095,6 +1155,7 @@ a:hover::after {
     background: linear-gradient(135deg, #2e7d32, #43a047);
     color: #fff;
 }
+
 .buy-now-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(46, 125, 50, 0.4);
@@ -1292,7 +1353,10 @@ a:hover::after {
     transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     white-space: nowrap;
 }
-#pdd-toast.toast-show { bottom: 30px; }
+
+#pdd-toast.toast-show {
+    bottom: 30px;
+}
 
 /* ===== RESPONSIVE ADDITIONS ===== */
 @media (max-width: 768px) {
@@ -1455,8 +1519,15 @@ a:hover::after {
 }
 
 @keyframes floatPulse {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 /* ===== MENU POPUP OVERLAY ===== */
