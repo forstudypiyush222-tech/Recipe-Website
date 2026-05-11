@@ -492,7 +492,7 @@ a:hover::after {
 
 .dish-tagline {
     text-align: center;
-    color: #8b5e3c;
+    color: #7a4f2e;
     font-style: italic;
     font-size: 0.95rem;
     margin-bottom: 5px;
@@ -1083,6 +1083,14 @@ a:hover::after {
     }
 }
 
+@media (max-width: 360px) {
+    .cat-btn {
+        white-space: normal;
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+}
+
 /* ===== CART BADGE IN NAV ===== */
 .cart-link {
     position: relative;
@@ -1504,6 +1512,10 @@ a:hover::after {
     white-space: nowrap;
 }
 
+.floating-menu-btn.cart-visible {
+    bottom: 160px;
+}
+
 .floating-menu-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 35px rgba(26, 15, 10, 0.6), 0 0 25px rgba(245, 199, 120, 0.25);
@@ -1733,6 +1745,10 @@ a:hover::after {
         bottom: 80px;
     }
 
+    .floating-menu-btn.cart-visible {
+        bottom: 150px;
+    }
+
     .menu-popup-panel {
         max-width: 100%;
         max-height: 75vh;
@@ -1743,4 +1759,23 @@ a:hover::after {
         padding: 0;
         align-items: flex-end;
     }
+}
+
+/* ===== Accessibility: Keyboard focus indicators ===== */
+.card-btn:focus-visible,
+.cat-btn:focus-visible,
+.hamburger-btn:focus-visible,
+.fb-submit:focus-visible,
+.floating-menu-btn:focus-visible {
+    outline: 3px solid #f5c778;
+    outline-offset: 2px;
+}
+
+/* ===== Prevent a::after underline on button-like anchors ===== */
+.card-btn::after,
+.cat-btn::after,
+.floating-menu-btn::after,
+.cart-bar-btn::after,
+.hero-btn::after {
+    display: none;
 }

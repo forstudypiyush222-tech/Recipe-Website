@@ -29,26 +29,26 @@ const PRICES = {
 
 // ===== ITEM IMAGES =====
 const IMAGES = {
-    'Gulab Jamun': '../assets/gulab jamun.jpg',
-    'Vampire Blood Drink': '../assets/blood drink.png',
-    'Classic Barfi': '../assets/barfi.jpg',
-    'Butter Chicken': '../assets/butter_chicken.png',
-    'Hyderabadi Biryani': '../assets/biryani.png',
-    'Pani Puri (Golgappa)': '../assets/pani_puri.png',
-    'Chole Bhature': '../assets/chole_bhature.png',
-    'Crispy Jalebi': '../assets/jalebi.png',
-    'Rasmalai': '../assets/rasmalai.png',
-    'Monster Green Pasta': '../assets/Monster green pasta.png',
-    'Zombie Burger': '../assets/Zombie Burger.png',
-    'Zombie Brain Jelly': '../assets/Zombie Brain Jelly.png',
-    'Poison Apple Drink': '../assets/Poison Apple Drink.png',
-    'Ghost Marshmallow Dessert': '../assets/Ghost Marshmallow Dessert.png',
-    'Coffin Sandwich': '../assets/Coffin Sandwich.png',
-    'Toxic Slime Drink': '../assets/Toxic Slime Drink.png',
-    'Skull Chocolate Cake': '../assets/Skull Chocolate Cake.png',
-    'Spider Web Pizza': '../assets/Spider Web Pizza.png',
-    'Bloody Pancakes': '../assets/Bloody Pancakes.png',
-    'Graveyard Dessert Cup': '../assets/Graveyard Dessert Cup.png'
+    'Gulab Jamun': 'assets/gulab jamun.jpg',
+    'Vampire Blood Drink': 'assets/blood drink.png',
+    'Classic Barfi': 'assets/barfi.jpg',
+    'Butter Chicken': 'assets/butter_chicken.png',
+    'Hyderabadi Biryani': 'assets/biryani.png',
+    'Pani Puri (Golgappa)': 'assets/pani_puri.png',
+    'Chole Bhature': 'assets/chole_bhature.png',
+    'Crispy Jalebi': 'assets/jalebi.png',
+    'Rasmalai': 'assets/rasmalai.png',
+    'Monster Green Pasta': 'assets/Monster green pasta.png',
+    'Zombie Burger': 'assets/Zombie Burger.png',
+    'Zombie Brain Jelly': 'assets/Zombie Brain Jelly.png',
+    'Poison Apple Drink': 'assets/Poison Apple Drink.png',
+    'Ghost Marshmallow Dessert': 'assets/Ghost Marshmallow Dessert.png',
+    'Coffin Sandwich': 'assets/Coffin Sandwich.png',
+    'Toxic Slime Drink': 'assets/Toxic Slime Drink.png',
+    'Skull Chocolate Cake': 'assets/Skull Chocolate Cake.png',
+    'Spider Web Pizza': 'assets/Spider Web Pizza.png',
+    'Bloody Pancakes': 'assets/Bloody Pancakes.png',
+    'Graveyard Dessert Cup': 'assets/Graveyard Dessert Cup.png'
 };
 
 // ===== ITEM CATEGORIES =====
@@ -227,11 +227,30 @@ function showToast(message, duration = 2500) {
         document.body.appendChild(toast);
     }
     toast.textContent = message;
-    toast.className = 'toast-show';
-    setTimeout(() => { toast.className = ''; }, duration);
+    toast.classList.add('toast-show');
+    setTimeout(() => { toast.classList.remove('toast-show'); }, duration);
 }
 
 // Init cart badge on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateCartBadge();
 });
+
+// ===== SHARED HAMBURGER NAV (inner pages) =====
+(function() {
+    const btn = document.querySelector('.shared-hamburger');
+    const nav = document.getElementById('navlinks');
+    if (btn && nav) {
+        btn.addEventListener('click', function() {
+            const open = nav.classList.toggle('nav-open');
+            btn.setAttribute('aria-expanded', String(open));
+        });
+        // Close nav when clicking a link
+        nav.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                nav.classList.remove('nav-open');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+})();

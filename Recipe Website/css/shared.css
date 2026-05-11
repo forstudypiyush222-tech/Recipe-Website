@@ -62,7 +62,7 @@ a:hover{color:var(--gold);background:rgba(245,199,120,0.12);transform:translateY
 .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 30px rgba(245,199,120,.5);}
 
 .btn-danger{padding:8px 16px;background:linear-gradient(135deg,#c62828,#ef5350);color:#fff!important;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s ease;}
-.btn-danger:hover{transform:scale(1.05);}
+.btn-danger:hover{transform:scale(1.05);background:linear-gradient(135deg,#b71c1c,#e53935);box-shadow:0 4px 12px rgba(198,40,40,.4);}
 
 /* ===== FORM INPUTS ===== */
 .form-input{width:100%;padding:12px 16px;border:2px solid rgba(212,167,106,.3);border-radius:12px;font-family:'Poppins',sans-serif;font-size:1rem;color:var(--brown);background:var(--cream);transition:border-color .3s ease,box-shadow .3s ease;outline:none;}
@@ -107,14 +107,92 @@ a:hover{color:var(--gold);background:rgba(245,199,120,0.12);transform:translateY
 @keyframes strokeCheck{to{stroke-dashoffset:0}}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
 
+/* ===== SHARED HAMBURGER (inner pages) ===== */
+.hamburger-li {
+    display: none;
+}
+.shared-hamburger {
+    display: none;
+    background: none;
+    border: 2px solid rgba(245, 199, 120, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 8px;
+    width: 46px;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+.shared-hamburger:hover {
+    background: rgba(245, 199, 120, 0.12);
+    border-color: var(--gold);
+}
+.shared-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--gold);
+    margin: 4px auto;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-    #navlist{flex-wrap:wrap;justify-content:center;gap:8px;padding:10px;}
+    #navlinks {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #1a0f0a 0%, #3d1f14 40%, #5a2d1a 100%);
+        padding: 12px 0;
+        z-index: 999;
+        gap: 0;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        border-top: 1px solid rgba(245,199,120,0.1);
+    }
+    #navlinks.nav-open {
+        display: flex;
+    }
+    #navlinks a {
+        padding: 14px 28px;
+        display: block;
+        border-radius: 0;
+        font-size: 1rem;
+    }
+    #navlinks a:hover {
+        background: rgba(245,199,120,0.1);
+        transform: none;
+    }
+    .shared-hamburger { display: flex; }
+    .hamburger-li { display: block; }
+    .navcontainer { position: relative; }
+    #navlist{justify-content:space-between;gap:8px;padding:10px 16px;}
     #logo{font-size:1.5rem;}
-    a{font-size:.9rem;padding:6px 14px;}
     .page-title{font-size:1.8rem;}
     .page-main{padding:25px 12px 40px;}
     .card-body{padding:18px;}
     .loading-card{padding:35px 25px;}
     .success-card{padding:35px 25px;}
+}
+
+/* ===== Accessibility: Focus indicators for shared buttons ===== */
+.btn-primary:focus-visible,
+.btn-danger:focus-visible,
+.btn-secondary:focus-visible,
+.btn-gold:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* ===== Prevent a::after underline on shared button anchors ===== */
+.btn-primary::after,
+.btn-secondary::after,
+.btn-gold::after,
+.btn-danger::after {
+    display: none;
 }

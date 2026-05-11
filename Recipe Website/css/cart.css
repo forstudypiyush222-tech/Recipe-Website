@@ -8,7 +8,7 @@
 .cart-item-info .cat{font-size:.8rem;color:var(--brown4);font-style:italic;}
 .cart-item-info .price{font-weight:700;color:var(--brown3);font-size:1rem;margin-top:4px;}
 .cart-item-qty{display:flex;align-items:center;border-radius:10px;overflow:hidden;border:2px solid var(--gold2);flex-shrink:0;}
-.cart-item-qty button{width:36px;height:36px;font-size:1.1rem;font-weight:700;border:none;background:linear-gradient(135deg,#3d1f14,#5a2d1a);color:var(--gold);cursor:pointer;transition:background .2s;}
+.cart-item-qty button{width:44px;height:44px;font-size:1.1rem;font-weight:700;border:none;background:linear-gradient(135deg,#3d1f14,#5a2d1a);color:var(--gold);cursor:pointer;transition:background .2s;}
 .cart-item-qty button:hover{background:linear-gradient(135deg,#5a2d1a,#8b4513);}
 .cart-item-qty span{width:40px;text-align:center;font-weight:700;color:var(--brown);background:#fff;font-size:1rem;}
 .cart-item-subtotal{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--brown3);min-width:70px;text-align:right;flex-shrink:0;}
