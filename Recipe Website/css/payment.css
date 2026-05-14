@@ -30,4 +30,16 @@
 .app-badges{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:12px;}
 .app-badges span{padding:4px 12px;background:rgba(212,167,106,.12);border:1px solid rgba(212,167,106,.25);border-radius:20px;font-size:.75rem;font-weight:500;color:var(--brown2);}
 .secure-note{text-align:center;font-size:.78rem;color:var(--brown4);margin-top:10px;}
+
+/* Success detail card */
+.success-details{background:rgba(245,199,120,.08);border-radius:14px;padding:20px;margin-bottom:18px;border:1px solid var(--card-border);text-align:left;}
+.success-detail-row{padding:9px 0;border-bottom:1px solid rgba(212,167,106,.12);}
+.success-detail-row:last-child{border-bottom:none;padding-bottom:0;}
+.success-detail-row:first-child{padding-top:0;}
+.success-detail-label{display:block;font-size:.75rem;color:var(--brown4);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.success-detail-value{display:block;font-size:.95rem;font-weight:700;color:var(--brown);line-height:1.5;word-break:break-word;}
+.success-detail-value.order-id{font-family:'Courier New',monospace;font-size:1rem;color:var(--brown3);letter-spacing:.5px;}
+.success-detail-value.items{font-weight:600;font-size:.9rem;color:var(--brown2);line-height:1.65;}
+.success-detail-value.amount{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--green);}
+
 @media(max-width:768px){.payment-grid{grid-template-columns:1fr;}}

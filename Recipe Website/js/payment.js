@@ -141,9 +141,18 @@ function processPayment() {
 
         // Populate success card
         let detailsHTML = `
-            <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:.9rem"><span style="color:var(--brown4)">Order ID</span><span style="font-weight:700">${orderId}</span></div>
-            <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:.9rem"><span style="color:var(--brown4)">Items</span><span style="font-weight:700">${order.items.map(i => i.name + ' ×' + i.quantity).join(', ')}</span></div>
-            <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:.9rem"><span style="color:var(--brown4)">Amount Paid</span><span style="font-weight:700">${formatCurrency(total)}</span></div>`;
+            <div class="success-detail-row">
+                <span class="success-detail-label">Order ID</span>
+                <span class="success-detail-value order-id">${orderId}</span>
+            </div>
+            <div class="success-detail-row">
+                <span class="success-detail-label">Items Ordered</span>
+                <span class="success-detail-value items">${order.items.map(i => i.name + ' × ' + i.quantity).join(', ')}</span>
+            </div>
+            <div class="success-detail-row">
+                <span class="success-detail-label">Amount Paid</span>
+                <span class="success-detail-value amount">${formatCurrency(total)}</span>
+            </div>`;
         document.getElementById('success-details').innerHTML = detailsHTML;
         document.getElementById('receipt-link').href = `receipt.html?id=${orderId}`;
 

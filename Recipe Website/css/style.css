@@ -318,25 +318,34 @@ a:hover::after {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
+.hero-title-wrapper {
+    text-align: center;
+    margin-bottom: 10px;
+    animation: slideDown 0.8s ease-out;
+}
+
+.hero-emoji {
+    font-size: clamp(1.5rem, 4.5vw, 3.2rem);
+    line-height: 1;
+    vertical-align: middle;
+    position: relative;
+    top: -0.06em;
+    margin: 0 -0.05em;
+}
+
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 5vw, 3.2rem);
+    font-size: clamp(1.5rem, 4.5vw, 3.2rem);
     font-weight: 900;
     color: #f5c778;
     text-shadow: 0 4px 20px rgba(245, 199, 120, 0.3);
-    margin-bottom: 10px;
-    animation: slideDown 0.8s ease-out;
-    white-space: normal;
-    text-align: center;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    line-height: 1.3;
 }
 
 .hero-title .highlight {
@@ -344,6 +353,11 @@ a:hover::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
+}
+
+.hero-br {
+    display: none;
 }
 
 .hero-subtitle {
@@ -1724,6 +1738,59 @@ a:hover::after {
 
 .cart-bar-btn::after {
     display: none !important;
+}
+
+/* ===== RESPONSIVE: HERO SECTION ===== */
+@media (max-width: 768px) {
+    .hero-br {
+        display: block;
+    }
+
+    .hero-section {
+        padding: 60px 24px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-taglines p {
+        font-size: 1rem;
+    }
+
+    .hero-intro {
+        padding: 22px;
+    }
+
+    .hero-intro p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 45px 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 18px;
+    }
+
+    .hero-taglines p {
+        font-size: 0.92rem;
+    }
+
+    .hero-intro {
+        padding: 18px;
+        margin-bottom: 22px;
+    }
+
+    .hero-intro p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
 }
 
 /* ===== RESPONSIVE: FLOATING ELEMENTS ===== */
