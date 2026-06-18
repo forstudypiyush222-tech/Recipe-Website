@@ -55,6 +55,7 @@
 <script src="js/shared.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    if(window.clarity) { clarity("event", "admin_viewed"); console.log("Clarity Event:", "admin_viewed"); }
     const orders = getOrders();
 
     // Stats

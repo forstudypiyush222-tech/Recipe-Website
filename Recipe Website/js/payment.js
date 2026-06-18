@@ -7,7 +7,10 @@ const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';  // Replace with your EmailJS publ
 const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
 const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
 
-document.addEventListener('DOMContentLoaded', renderPayment);
+document.addEventListener('DOMContentLoaded', () => {
+    if(window.clarity) { clarity("event", "payment_page_viewed"); console.log("Clarity Event:", "payment_page_viewed"); }
+    renderPayment();
+});
 
 function renderPayment() {
     const cart = getCart();
@@ -134,6 +137,7 @@ function processPayment() {
             date: new Date().toISOString()
         };
         addOrder(order);
+        if(window.clarity) { clarity("event", "order_created"); console.log("Clarity Event:", "order_created"); }
 
         // Clear cart
         clearCart();
@@ -158,6 +162,7 @@ function processPayment() {
 
         // Show success
         document.getElementById('success-overlay').classList.add('active');
+        if(window.clarity) { clarity("event", "payment_completed"); console.log("Clarity Event:", "payment_completed"); }
 
         // Send email (if configured)
         sendConfirmationEmail(order);

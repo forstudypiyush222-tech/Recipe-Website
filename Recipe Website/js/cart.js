@@ -1,5 +1,8 @@
 /** Cart Page Logic */
-document.addEventListener('DOMContentLoaded', renderCart);
+document.addEventListener('DOMContentLoaded', () => {
+    if(window.clarity) { clarity("event", "cart_viewed"); console.log("Clarity Event:", "cart_viewed"); }
+    renderCart();
+});
 
 function renderCart() {
     const cart = getCart();

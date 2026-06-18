@@ -1,5 +1,8 @@
 /** Checkout Page Logic */
-document.addEventListener('DOMContentLoaded', renderCheckout);
+document.addEventListener('DOMContentLoaded', () => {
+    if(window.clarity) { clarity("event", "checkout_started"); console.log("Clarity Event:", "checkout_started"); }
+    renderCheckout();
+});
 
 /* --- Validation Rules --- */
 const VALIDATORS = {

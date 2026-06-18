@@ -1490,6 +1490,12 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
+            if(window.clarity) { clarity("event", "home_viewed"); console.log("Clarity Event:", "home_viewed"); }
+            document.querySelectorAll('a[href="#menu"]').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(window.clarity) { clarity("event", "menu_viewed"); console.log("Clarity Event:", "menu_viewed"); }
+                });
+            });
             // Hide overlays so they don't block anything
             document.querySelectorAll('.image-box .overlay').forEach(o => o.style.display = 'none');
 
@@ -1523,7 +1529,15 @@
 
             // Scroll-triggered fade-in with staggered delay
             const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.classList.contains('recipe-section') && !entry.target.dataset.viewTracked) {
+                            entry.target.dataset.viewTracked = 'true';
+                            if (window.clarity) { clarity("event", "recipe_viewed"); console.log("Clarity Event:", "recipe_viewed"); }
+                        }
+                    }
+                });
             }, { threshold: 0.08 });
             document.querySelectorAll('.recipe-section, .contact-section, .about-section, .feedback-section').forEach((el, i) => {
                 el.classList.add('fade-in');
@@ -1539,6 +1553,7 @@
         });
 
         function handleAddToCart(name) {
+            if(window.clarity) { clarity("event", "item_added_to_cart"); console.log("Clarity Event:", "item_added_to_cart"); }
             addToCart(name, 1);
             showToast(`${name} added to cart! 🛒`);
             updateCartActionBar();

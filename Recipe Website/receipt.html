@@ -72,6 +72,7 @@
 <script src="js/shared.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    if(window.clarity) { clarity("event", "receipt_viewed"); console.log("Clarity Event:", "receipt_viewed"); }
     const params = new URLSearchParams(window.location.search);
     const orderId = params.get('id');
     const el = document.getElementById('receipt-content');
